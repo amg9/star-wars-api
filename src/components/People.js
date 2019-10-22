@@ -25,18 +25,24 @@ class People extends React.Component {
     const { people, next, previous, } = this.state
     return (
       <>
-        {people.map( person => 
-          <p>
-            <Link key={person.url} to={person.url.slice(20)}>
-              {person.name}
-            </Link>
-          </p>
-        )}
-        { previous && 
-          <Button onClick={() => this.getPeople(previous)}>Previous</Button>
-        }
-        { next && 
-          <Button onClick={() => this.getPeople(next)}>Next</Button>
+        { people.length === 0 ?
+          <p>Loading...</p>
+          :
+          <>
+            {people.map( person => 
+              <p>
+                <Link key={person.url} to={person.url.slice(20)}>
+                  {person.name}
+                </Link>
+              </p>
+            )}
+            { previous && 
+              <Button onClick={() => this.getPeople(previous)}>Previous</Button>
+            }
+            { next && 
+              <Button onClick={() => this.getPeople(next)}>Next</Button>
+            }
+          </>
         }
       </>
     )
