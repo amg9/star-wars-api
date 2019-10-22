@@ -3,15 +3,19 @@ import axios from 'axios'
 import { Button, } from 'semantic-ui-react'
 
 class Person extends React.Component {
-  state = { person: {}, }
+  state = { person: {}, homeworld: '', }
 
   componentDidMount() {
     axios.get(`https://swapi.co/api/people/${this.props.match.params.id}`)
-      .then(res => this.setState({ person: res.data, }))
+      .then(res => {
+        this.setState({ person: res.data, })
+        axios.get(res.data.homeworld)
+          .then(res => this.setState({ homeworld: res.data.name, }))
+      })
   }
 
   render() {
-    const { person, } = this.state
+    const { person, homeworld, } = this.state
     return (
       <>
         <Button onClick={() => this.props.history.push('/')}>Back to People</Button>
@@ -23,7 +27,7 @@ class Person extends React.Component {
         <p>Height: {person.height}</p>
         <p>Mass: {person.mass}</p>
         <p>Skin Color: {person.skin_color}</p>
-        <p>Home World: {person.homeworld}</p>
+        <p>Home World: {homeworld}</p>
       </>
     )
   }
