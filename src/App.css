@@ -11,6 +11,10 @@ h1 {
   color: rgb(255, 230, 0);
 }
 
+h2 {
+  color: rgb(211, 205, 223);
+}
+
 .header {
   color: white !important;
 }

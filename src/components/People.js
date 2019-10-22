@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Button, List, Header, } from 'semantic-ui-react'
+import { Button, List, } from 'semantic-ui-react'
 import { Link, } from 'react-router-dom'
 
 class People extends React.Component {
@@ -25,7 +25,7 @@ class People extends React.Component {
     const { people, next, previous, } = this.state
     return (
       <>
-        <Header as='h2'>People</Header>
+        <h2>People</h2>
         { people.length === 0 ?
           <p>Loading...</p>
           :
