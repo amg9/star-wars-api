@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Button, } from 'semantic-ui-react'
+import { Button, List, Header, } from 'semantic-ui-react'
 import { Link, } from 'react-router-dom'
 
 class People extends React.Component {
@@ -25,17 +25,25 @@ class People extends React.Component {
     const { people, next, previous, } = this.state
     return (
       <>
+        <Header as='h2'>People</Header>
         { people.length === 0 ?
           <p>Loading...</p>
           :
           <>
-            {people.map( person => 
-              <p>
-                <Link key={person.url} to={person.url.slice(20)}>
-                  {person.name}
-                </Link>
-              </p>
-            )}
+            <List>
+              {people.map( person => 
+                <List.Item>
+                  <Link key={person.url} to={person.url.slice(20)}>
+                    <List.Header>{person.name}</List.Header>
+                  </Link>
+                </List.Item>
+              )} 
+            </List>
+            <p>pg.{next ?
+              next.charAt(34) - 1
+            :
+              9
+            }</p>
             { previous && 
               <Button onClick={() => this.getPeople(previous)}>Previous</Button>
             }
